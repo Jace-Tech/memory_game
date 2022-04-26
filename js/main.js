@@ -95,14 +95,14 @@ const flipCard = (card, index) => {
         
         choosenCards.push(chosenCard)
 
-        card.addEventListener("transitionend", () => {
+        setTimeout(() =>{
             card.classList.remove("flip")
             card.querySelector("img").src = GAME_IMAGES[index].src
             card.querySelector(".card-overlay").classList.add("hide")
-        }, { once: true })
+        }, 500)
 
         if(choosenCards.length === 2) {
-            setTimeout(checkMatched, 1000)
+            setTimeout(checkMatched, 1500)
         }
     }
 
@@ -114,7 +114,7 @@ const handleClick = (e) => {
     const card = e.target.parentElement
     const cardIndex = cards.indexOf(card)
     
-    if(cards.includes(card) && !foundCards.find(item => item.card == card)) {
+    if(cards.includes(card) && !foundCards.find(item => item.card == card) && !choosenCards.find(item => item.card == card)) {
         flipCard(card, cardIndex)
     }
 }
